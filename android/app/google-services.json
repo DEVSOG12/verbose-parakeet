@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "459209190693",
+    "firebase_url": "https://loadsensor-96033-default-rtdb.firebaseio.com",
+    "project_id": "loadsensor-96033",
+    "storage_bucket": "loadsensor-96033.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459209190693:android:be4da7ffa664ce02673ecc",
+        "android_client_info": {
+          "package_name": "com.example.finalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459209190693-2o72s23igt3b2udp796mbi8sg92ja9c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtO9NYGr2EseMktR7s1-u-xTAwFmvcJHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459209190693-2o72s23igt3b2udp796mbi8sg92ja9c8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

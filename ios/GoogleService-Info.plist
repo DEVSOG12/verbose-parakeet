@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>459209190693-gm6p3mqd35dg4fpudr793ren6bdppemg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.459209190693-gm6p3mqd35dg4fpudr793ren6bdppemg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBLR6i3UFNTHDB8t6yg5pW44cJ7P6D8xdE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>459209190693</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.finalapp</string>
+	<key>PROJECT_ID</key>
+	<string>loadsensor-96033</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loadsensor-96033.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:459209190693:ios:9f4f927d8d194217673ecc</string>
+	<key>DATABASE_URL</key>
+	<string>https://loadsensor-96033-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
