@@ -80,56 +80,65 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: FutureBuilder(
-          future: getTestData(),
+      body: StreamBuilder(
+          stream: FirebaseDatabase.instance.ref('Test').get().asStream(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) _tests = snapshot.data! as List<Test>;
-            if (snapshot.hasData) _testDataSource = TestDataSource(_tests);
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            }
-            log(snapshot.data.toString());
-            return SfDataGrid(
-              source: _testDataSource!,
-              columns: [
-                GridTextColumn(
-                    columnName: 'UID',
-                    label: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'UID',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-                GridTextColumn(
-                    columnName: 'PartName',
-                    label: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'PartName',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-                GridTextColumn(
-                    columnName: 'Count',
-                    label: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'Count',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-                GridTextColumn(
-                    columnName: 'PartWeight',
-                    label: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'PartWeight',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-              ],
-            );
+            return FutureBuilder(
+                future: getTestData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) _tests = snapshot.data! as List<Test>;
+                  if (snapshot.hasData)
+                    _testDataSource = TestDataSource(_tests);
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  }
+                  log(snapshot.data.toString());
+                  return SfDataGrid(
+                    source: _testDataSource!,
+                    columns: [
+                      GridTextColumn(
+                          columnName: 'UID',
+                          label: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              alignment: Alignment.centerLeft,
+                              child: const Text(
+                                'UID',
+                                overflow: TextOverflow.ellipsis,
+                              ))),
+                      GridTextColumn(
+                          columnName: 'PartName',
+                          label: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              alignment: Alignment.centerLeft,
+                              child: const Text(
+                                'PartName',
+                                overflow: TextOverflow.ellipsis,
+                              ))),
+                      GridTextColumn(
+                          columnName: 'Count',
+                          label: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              alignment: Alignment.centerLeft,
+                              child: const Text(
+                                'Count',
+                                overflow: TextOverflow.ellipsis,
+                              ))),
+                      GridTextColumn(
+                          columnName: 'PartWeight',
+                          label: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              alignment: Alignment.centerLeft,
+                              child: const Text(
+                                'PartWeight',
+                                overflow: TextOverflow.ellipsis,
+                              ))),
+                    ],
+                  );
+                });
           }),
     ));
   }
