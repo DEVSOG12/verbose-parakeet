@@ -68,7 +68,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Test> _tests = [];
-  late TestDataSource _testDataSource;
+  TestDataSource? _testDataSource;
 
   @override
   void initState() {
@@ -84,12 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FutureBuilder(
           future: getTestData(),
           builder: (context, snapshot) {
-            _tests = snapshot.data! as List<Test>;
+            if (snapshot.hasData) _tests = snapshot.data! as List<Test>;
             if (snapshot.hasData) _testDataSource = TestDataSource(_tests);
-
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
             log(snapshot.data.toString());
             return SfDataGrid(
-              source: _testDataSource,
+              source: _testDataSource!,
               columns: [
                 // ignore: deprecated_member_use
                 GridTextColumn(
@@ -142,20 +144,19 @@ class _MyHomePageState extends State<MyHomePage> {
     DataSnapshot dataSnapshot =
         await FirebaseDatabase.instance.ref('Test').get();
     List<Test> fromdoc = [];
-    // for (var element in (dataSnapshot.value as List<Map>)) {
-    fromdoc.add(
-        Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
-    log(fromdoc.first.toString());
-    fromdoc.add(
-        Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
-    // log(fromdoc.toString());
-    fromdoc.add(
-        Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
-    // log(fromdoc.toString());
-    fromdoc.add(
-        Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
-    // log(fromdoc.toString());
-    // }
+    for (var element in (dataSnapshot.value as List<dynamic>)) {
+      fromdoc.add(Test.fromMap(Map<String, dynamic>.from(element)));
+      log(fromdoc.first.toString());
+      // fromdoc.add(
+      //     Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
+      // // log(fromdoc.toString());
+      // fromdoc.add(
+      //     Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
+      // // log(fromdoc.toString());
+      // fromdoc.add(
+      //     Test.fromMap(Map<String, dynamic>.from(dataSnapshot.value! as Map)));
+      // log(fromdoc.toString());
+    }
     // if (fromdoc.isNotEmpty)
     return fromdoc;
     // return [
@@ -176,7 +177,8 @@ class TestDataSource extends DataGridSource {
                   columnName: 'PartName', value: dataGridRow.partName),
               DataGridCell<int>(columnName: 'Count', value: dataGridRow.count),
               DataGridCell<int>(
-                  columnName: 'PartWeight', value: dataGridRow.partWeight)
+                  columnName: 'PartWeight',
+                  value: dataGridRow.partWeight!.toInt())
             ]))
         .toList();
   }
@@ -200,7 +202,7 @@ class Test {
   int? uID;
   String? partName;
   int? count;
-  int? partWeight;
+  double? partWeight;
 
   Test.fromMap(Map<String, dynamic> map) {
     uID = map["UID"];
