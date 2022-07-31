@@ -72,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     // _tests = getTestData();
     super.initState();
   }
@@ -93,7 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
             return SfDataGrid(
               source: _testDataSource!,
               columns: [
-                // ignore: deprecated_member_use
                 GridTextColumn(
                     columnName: 'UID',
                     label: Container(
@@ -103,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           'UID',
                           overflow: TextOverflow.ellipsis,
                         ))),
-
                 GridTextColumn(
                     columnName: 'PartName',
                     label: Container(
@@ -113,7 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           'PartName',
                           overflow: TextOverflow.ellipsis,
                         ))),
-
                 GridTextColumn(
                     columnName: 'Count',
                     label: Container(
@@ -123,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           'Count',
                           overflow: TextOverflow.ellipsis,
                         ))),
-
                 GridTextColumn(
                     columnName: 'PartWeight',
                     label: Container(
@@ -137,7 +132,6 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }),
     ));
-    // TODO: implement build
   }
 
   Future<List<Test>> getTestData() async {
@@ -190,9 +184,7 @@ class TestDataSource extends DataGridSource {
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((dataGridCell) {
-      return Container(
-        child: Text(dataGridCell.value.toString()),
-      );
+      return Text(dataGridCell.value.toString());
     }).toList());
   }
 }
